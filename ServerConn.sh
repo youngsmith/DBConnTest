@@ -8,10 +8,10 @@ CONN_INFO_FILE_NAME=ConnInfoList.txt
 
 echo "Script is Starting ... : $(date)" 
 
-GATEWAY_IP=10.102.61.44
-ID=yyjjang
-user=app_dsc_search
-password="z-Lj7!kZ2XR@F&Hg"
+GATEWAY_IP=
+ID=
+user=
+password=""
 
 echo "Hello, ${ID}. Now Start to check DB Connection!"
 
