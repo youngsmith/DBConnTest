@@ -1,32 +1,32 @@
 server:
-   - ip: 10.107.12.169
+   - ip: 1
      DB:
-        - ip: 10.107.0.174:3306
+        - ip: 1
           query:
             - show databases; 
-            - select * from wmp_benefit.discount limit 1; 
-            - select * from wmp_benefit_search.discount_search limit 1; 
-            - select * from wmp_public.mng_code limit 1;
+            - select 1; 
+            - select 1; 
+            - select 1;
 
-        - ip: 10.107.0.174:3306
+        - ip: 1
           query:
             - show databases; 
-            - select * from wmp_benefit.discount limit 1; 
-            - select * from wmp_benefit_search.discount_search limit 1; 
-            - select * from wmp_public.mng_code limit 1;
+            - select 1; 
+            - select 1; 
+            - select 1;
 
-   - ip: 10.107.12.169
+   - ip: 1
      DB:
-        - ip: 10.107.0.174:3306
+        - ip: 1
           query:
             - show databases; 
-            - select * from wmp_benefit.discount limit 1; 
-            - select * from wmp_benefit_search.discount_search limit 1; 
-            - select * from wmp_public.mng_code limit 1;
+            - select 1; 
+            - select 1; 
+            - select 1;
 
-        - ip: 10.107.0.174:3306
+        - ip: 1
           query:
             - show databases; 
-            - select * from wmp_benefit.discount limit 1; 
-            - select * from wmp_benefit_search.discount_search limit 1; 
-            - select * from wmp_public.mng_code limit 1;
+            - select 1; 
+            - select 1; 
+            - select 1;
