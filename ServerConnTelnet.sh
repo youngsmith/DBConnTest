@@ -3,48 +3,34 @@
 IFS=,
 DB_CONN_TEST_RESULT_FILE_NAME=DBConnTestResult.txt
 TEMP_FILE_NAME=output.txt
-DB_CONN_SHELL_FILE_NAME=DBConn.sh
+TELNET_CONN_SHELL_FILE_NAME=Telnet.sh
 CONN_INFO_FILE_NAME=ConnInfoList.txt
 
 echo "Script is Starting ... : $(date)" 
 
-idx=1
-while read ip id user password
-do
-    if [ "${idx}" -eq 1 ]
-    then
-        break
-    fi
-done < ${CONN_INFO_FILE_NAME}
+ip=192.168.1.60
+ID=yyjjang
 
-echo ${ip} ${id}
+echo ${ip} ${ID}
 
 
 echo "Hello, ${ID}. Now Start to check DB Connection!"
 
 echo "" > ${DB_CONN_TEST_RESULT_FILE_NAME}
 
-while read server_ip db_ip port sql
+while read server_ip
 do
-    if [ "${idx}" -eq 1 ]
-    then
-        ${idx}=2
-        continue
-    fi
-
     if [ "${server_ip}" = "EOF" ]
     then
         exit
     fi
 
     echo "Trying Connecting to Server [${server_ip}] ..."
-    ssh ${ID}@${server_ip} 'bash -s' < ${DB_CONN_SHELL_FILE_NAME} ${db_ip} ${port} ${user} \'${password}\'  \'${sql}\'
-    
+    ssh ${ID}@${server_ip} 'bash -s' < ${TELNET_CONN_SHELL_FILE_NAME} ${server_ip}
     # download result file
     scp ${ID}@${server_ip}:~/${TEMP_FILE_NAME} ./
-
+    
     # append query result to DB_CONN_TEST_RESULT_FILE_NAME 
-    echo "[${server_ip} => ${db_ip}:${port}]" >> ${DB_CONN_TEST_RESULT_FILE_NAME} 
     cat ${TEMP_FILE_NAME} >> ${DB_CONN_TEST_RESULT_FILE_NAME}
     echo -e "\n\n\n" >> ${DB_CONN_TEST_RESULT_FILE_NAME}
     

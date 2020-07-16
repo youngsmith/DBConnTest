@@ -12,7 +12,6 @@ unprocessed_sql=$5
 ERROR=NONE
 DB_CONNECTION_INFO_FILE_NAME=extra_file
 
-
 # fail process function
 function fail_processing() {
     ERROR_MESSAGE="ERROR : $1"
@@ -20,7 +19,6 @@ function fail_processing() {
     echo ${ERROR_MESSAGE} > ${TEMP_FILE_NAME}
     exit
 }
-
 
 # check if OS is unbuntu
 OS=$(lsb_release -a | grep 'Distributor ID' | grep ${TARGET_OS})
@@ -37,7 +35,6 @@ fi
 
 # mysql_config_editor set --login-path=test --user=app_dsc_search --password --port=3307 --host=192.168.200.32
 # mysql --login-path=test
-# make extra_file
 echo "Successfully Connected At : [$host:$port] !"
 cat > ${DB_CONNECTION_INFO_FILE_NAME} << EOF
 [client]
@@ -83,16 +80,7 @@ done
 echo "Trying Connecting to DB Server [$host:$port] ...!"
 
 # Test Connection
-query_result=$($MYSQL --defaults-extra-file=${DB_CONNECTION_INFO_FILE_NAME} << EOF
-select 1;
-EOF
-)
-
-if [ -z "${query_result}" ]
-then
-    fail_processing "Can Not Connect to DB Server!"
-fi
-
+# query_result=$($MYSQL --defaults-extra-file=${DB_CONNECTION_INFO_FILE_NAME} << EOF
 
 echo "${unprocessed_sql} : NOW Executing SQL!"
 MYSQL=$(which mysql)
@@ -114,6 +102,5 @@ ${query_result}
 EOF
 
 done
-
 
 echo "Disconnecting From [$host:$port] ...!" 
