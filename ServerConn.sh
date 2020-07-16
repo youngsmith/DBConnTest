@@ -19,6 +19,10 @@ done < ${CONN_INFO_FILE_NAME}
 
 echo ${ip} ${id}
 
+GATEWAY_IP=
+ID=
+user=
+password=""
 
 echo "Hello, ${ID}. Now Start to check DB Connection!"
 
