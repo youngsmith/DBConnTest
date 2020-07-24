@@ -8,8 +8,8 @@ CONN_INFO_FILE_NAME=ConnInfoList.txt
 
 echo "Script is Starting ... : $(date)" 
 
-ip=192.168.1.60
-ID=yyjjang
+ip=
+ID=
 
 echo ${ip} ${ID}
 
