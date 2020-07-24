@@ -8,7 +8,7 @@ import yaml
 # Main
 # --------------------------------------------------------------------
 if __name__ == '__main__':
-    with open("Person.yaml", 'r') as stream:
+    with open("ConnInfoList.yaml", 'r') as stream:
         try:
             os.system('echo "" > ConnInfo.txt')
             a = yaml.safe_load(stream)
