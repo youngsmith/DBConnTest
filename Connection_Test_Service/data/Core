@@ -1,4 +1,5 @@
 
+
 # 게이트웨이에서 모든 서버로 접속하여 테스트한 총 결과 파일명
 TOTAL_RESULT_FILE_NAME=FirewallTestResult.txt
 # 각 서버에서의 테스트 결과 파일명
@@ -7,20 +8,24 @@ TEMP_RESULT_FILE_NAME=output.txt
 FIREWALL_TEST_SHELL_FILE_NAME=FirewallTest.sh
 # 각 서버 접속 정보 파일명
 CONN_INFO_FILE_NAME=ConnInfoList.txt
+TELNET_SCRIPT_FILE_NAME=Telnet.sh
 
 echo "Script Is Starting ... : $(date)" 
 echo "Hello, ${ID}. Now Start Firewall Check !"
 
+echo "${TELNET_SCRIPT//\\\$/\$}" > ${TELNET_SCRIPT_FILE_NAME}
 echo "" > ${TOTAL_RESULT_FILE_NAME}
 
 for start_server_ip in "${start_server_ip_list[@]}"
 do
     echo "Trying Connecting To Server [${start_server_ip}] ..."
     echo "[From Instance : ${start_server_ip}]" >> ${TOTAL_RESULT_FILE_NAME}
-    ssh ${ID}@${start_server_ip} "${TELNET_SCRIPT}"
+    ssh ${ID}@${start_server_ip} 'bash -s' < "${TELNET_SCRIPT_FILE_NAME}" "${target_server_ip_list}"
     scp ${ID}@${start_server_ip}:~/${TEMP_RESULT_FILE_NAME} ./
     cat ${TEMP_RESULT_FILE_NAME} >> ${TOTAL_RESULT_FILE_NAME}
     echo -e "\n\n\n" >> ${TOTAL_RESULT_FILE_NAME}
     rm ${TEMP_RESULT_FILE_NAME}
     echo "Disconnected From [${start_server_ip}] ..."
 done
+
+rm "${TELNET_SCRIPT_FILE_NAME}"

@@ -31,26 +31,26 @@ read_conn_info_file 'id' ID
 read_conn_info_file 'start-server' start_server_ip_list
 read_conn_info_file 'target-server' target_server_ip_list
 
+
 TELNET_SCRIPT=''
 while read line
 do 
-    TELNET_SCRIPT+=$(echo "${line//\$/\\\$}")
-    TELNET_SCRIPT+="${NL}"
+    TELNET_SCRIPT+=$(echo "${line//\$/\\\$} ")
+    
+    TELNET_SCRIPT+=${NL}
 done < "${TELNET_SCRIPT_FILE_NAME}"
 
 TELNET_SCRIPT=$(echo -e "${TELNET_SCRIPT}")
 echo "${TELNET_SCRIPT}"
 
-#TELNET_SCRIPT 를 나중에 붙이면 생기는 이슈 확인.
 read -r -d '' data_template << EOF
 #!/bin/bash
-TELNET_SCRIPT="${TELNET_SCRIPT}"
 ID=${ID}
 start_server_ip_list=(${start_server_ip_list[@]})
 target_server_ip_list=(${target_server_ip_list[@]})
+TELNET_SCRIPT='${TELNET_SCRIPT}'
 EOF
-
-echo ${data_template} > ${EXECUTE_SCRIPT_FILE_NAME}
+echo "${data_template}" > ${EXECUTE_SCRIPT_FILE_NAME}
 cat "${CORE_SCRIPT_FILE_NAME}" >> ${EXECUTE_SCRIPT_FILE_NAME}
 
 sudo chmod 777 ${EXECUTE_SCRIPT_FILE_NAME}

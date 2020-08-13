@@ -5,7 +5,6 @@ OUTPUT_FILE_NAME=output.txt
 echo "${ip} : start!"
 rm ${OUTPUT_FILE_NAME}
 
-<<<<<<< HEAD
 echo "[From Instance : ${ip}]" > ${OUTPUT_FILE_NAME}  
 
 DB_IP=(61.252.169.31 61.252.169.27)
@@ -20,6 +19,3 @@ do
     timeout --signal=9 1 telnet ${dp_ip} ${PORT[${idx}]} >> ${OUTPUT_FILE_NAME} 
     idx=$((idx+1))
 done
-=======
-echo "[${ip}]" > ${OUTPUT_FILE_NAME}  
->>>>>>> 626fb88e385f692c551e2f838c1224260a90eae5

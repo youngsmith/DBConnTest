@@ -9,15 +9,8 @@ FIREWALL_TEST_SHELL_FILE_NAME=FirewallTest.sh
 # 각 서버 접속 정보 파일명
 CONN_INFO_FILE_NAME=ConnInfoList.txt
 
-<<<<<<< HEAD
 # 수정필요 파일에서 읽는 걸로.
 ID=yyjjang
-=======
-echo "Script is Starting ... : $(date)" 
-
-ip=
-ID=
->>>>>>> 626fb88e385f692c551e2f838c1224260a90eae5
 
 echo "Script is Starting ... : $(date)" 
 echo "Hello, ${ID}. Now Start to check DB Connection!"
