@@ -9,20 +9,17 @@ CONN_INFO_FILE_NAME=ConnInfoList.txt
 echo "Script is Starting ... : $(date)" 
 
 idx=1
-while read ip id user password
-do
-    if [ "${idx}" -eq 1 ]
-    then
-        break
-    fi
-done < ${CONN_INFO_FILE_NAME}
+# while read ID user password
+# do
+#     if [ "${idx}" -eq 1 ]
+#     then
+#         break
+#     fi
+# done < ${CONN_INFO_FILE_NAME}
+ID=yyjjang
+user=app_deal
+password=DpA#Hq_c_2M-Eh9^
 
-echo ${ip} ${id}
-
-GATEWAY_IP=
-ID=
-user=
-password=""
 
 echo "Hello, ${ID}. Now Start to check DB Connection!"
 
@@ -30,11 +27,11 @@ echo "" > ${DB_CONN_TEST_RESULT_FILE_NAME}
 
 while read server_ip db_ip port sql
 do
-    if [ "${idx}" -eq 1 ]
-    then
-        ${idx}=2
-        continue
-    fi
+    # if [ "${idx}" -eq 1 ]
+    # then
+    #     idx=2
+    #     continue
+    # fi
 
     if [ "${server_ip}" = "EOF" ]
     then
